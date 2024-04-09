@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeBG</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <style>
+        *{
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        h2{
+            position: absolute;
+            top: 40%;
+        }
+        .buttons{
+            position: absolute;
+            bottom: 43%;
+            margin: 10px;
+        }
+    </style>
+    <div class="container">
+        <h2>Changing BG color on click</h2>
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div>
+    </div>
+</body>
+<script>
+    const stop = document.querySelector("#stop")
+    const start = document.querySelector("#start")
+    const h2 = document.querySelector("h2")
+    let body = document.querySelector('body')
+    let event;
+
+    function changeColors(){
+        event = setInterval(() => {
+            const red = Math.floor(Math.random()*256)
+            const green = Math.floor(Math.random()*256)
+            const blue = Math.floor(Math.random()*256)
+
+            const color = `rgb(${red},${green},${blue})`
+            body.style.backgroundColor = color
+            console.log(color);
+        }, 100);
+    }
+    function stopColoring(){
+        clearInterval(event)
+    }
+
+    start.addEventListener('click', changeColors);
+    stop.addEventListener('click',stopColoring)
+</script>
+</html>
